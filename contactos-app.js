@@ -1,11 +1,11 @@
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false, error: null };
+    this.state = { hasError: false };
   }
 
   static getDerivedStateFromError(error) {
-    return { hasError: true, error };
+    return { hasError: true };
   }
 
   componentDidCatch(error, errorInfo) {
@@ -29,7 +29,7 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-function DashboardApp() {
+function ContactosApp() {
   try {
     const [sidebarOpen, setSidebarOpen] = React.useState(true);
     const [currentUser, setCurrentUser] = React.useState(null);
@@ -46,30 +46,18 @@ function DashboardApp() {
     if (!currentUser) return null;
 
     return (
-      <div className="min-h-screen" data-name="dashboard-app" data-file="dashboard-app.js">
+      <div className="min-h-screen" data-name="contactos-app" data-file="contactos-app.js">
         <Sidebar isOpen={sidebarOpen} toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
         <div className={`transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-0'}`}>
           <Topbar user={currentUser} />
           <main className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-              <StatCard title="Usuarios Totales" value="245" icon="user-round-check" />
-              <StatCard title="Documentos" value="128" icon="folder-open" />
-              <StatCard title="Actividad" value="89%" icon="trending-up" />
-              <StatCard title="Notificaciones" value="12" icon="bell-ring" />
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-              <Calendar />
-              <ActivityChart />
-            </div>
-
-            <DocumentsPanel />
+            <ContactList />
           </main>
         </div>
       </div>
     );
   } catch (error) {
-    console.error('DashboardApp component error:', error);
+    console.error('ContactosApp component error:', error);
     return null;
   }
 }
@@ -77,6 +65,6 @@ function DashboardApp() {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ErrorBoundary>
-    <DashboardApp />
+    <ContactosApp />
   </ErrorBoundary>
 );

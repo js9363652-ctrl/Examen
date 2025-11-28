@@ -1,14 +1,10 @@
 function Calendar() {
   try {
     const [currentDate, setCurrentDate] = React.useState(new Date());
-    const [selectedDate, setSelectedDate] = React.useState(new Date());
-
-    const celebrateDates = {
-      '2025-01-01': 'Año Nuevo',
-      '2025-12-25': 'Navidad',
-      '2025-11-20': 'Día de la Revolución Mexicana'
-    };
-
+    
+    const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+      "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    
     const getDaysInMonth = (date) => {
       const year = date.getFullYear();
       const month = date.getMonth();
@@ -18,59 +14,49 @@ function Calendar() {
     };
 
     const { firstDay, daysInMonth } = getDaysInMonth(currentDate);
-    const days = [];
     
-    for (let i = 0; i < firstDay; i++) {
-      days.push(null);
-    }
+    const nextMonth = () => {
+      setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1));
+    };
     
-    for (let i = 1; i <= daysInMonth; i++) {
-      days.push(i);
-    }
-
-    const changeMonth = (delta) => {
-      const newDate = new Date(currentDate);
-      newDate.setMonth(newDate.getMonth() + delta);
-      setCurrentDate(newDate);
+    const prevMonth = () => {
+      setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1));
     };
 
-    const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-
     return (
-      <div className="bg-white rounded-lg p-6 shadow-lg" data-name="calendar" data-file="components/Calendar.js">
+      <div className="bg-blue-50 bg-opacity-95 backdrop-blur p-6 rounded-lg shadow-lg border-2 border-blue-200" data-name="calendar" data-file="components/Calendar.js">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-gray-900">Calendario</h2>
-          <div className="flex space-x-2">
-            <button onClick={() => changeMonth(-1)} className="p-2 hover:bg-gray-100 rounded">
-              <div className="icon-chevron-left text-lg"></div>
+          <h3 className="text-xl font-bold text-blue-900">{monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}</h3>
+          <div className="flex gap-2">
+            <button onClick={prevMonth} className="px-3 py-1 bg-[var(--primary-color)] text-white rounded hover:bg-[var(--secondary-color)]">
+              <div className="icon-chevron-left text-sm"></div>
             </button>
-            <button onClick={() => setCurrentDate(new Date())} className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
+            <button onClick={() => setCurrentDate(new Date())} className="px-3 py-1 bg-[var(--primary-color)] text-white rounded hover:bg-[var(--secondary-color)] text-sm">
               Hoy
             </button>
-            <button onClick={() => changeMonth(1)} className="p-2 hover:bg-gray-100 rounded">
-              <div className="icon-chevron-right text-lg"></div>
+            <button onClick={nextMonth} className="px-3 py-1 bg-[var(--primary-color)] text-white rounded hover:bg-[var(--secondary-color)]">
+              <div className="icon-chevron-right text-sm"></div>
             </button>
           </div>
         </div>
         
-        <div className="text-center mb-4">
-          <h3 className="text-lg font-bold">{monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}</h3>
-        </div>
-
         <div className="grid grid-cols-7 gap-2 text-center">
-          {['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'].map(day => (
-            <div key={day} className="font-bold text-sm text-gray-600">{day}</div>
+          {['D', 'L', 'M', 'X', 'J', 'V', 'S'].map(day => (
+            <div key={day} className="font-bold text-blue-700 text-sm">{day}</div>
           ))}
-          {days.map((day, idx) => (
-            <div key={idx} className={`p-2 rounded ${day ? 'hover:bg-blue-100 cursor-pointer' : ''} ${day === new Date().getDate() && currentDate.getMonth() === new Date().getMonth() ? 'bg-blue-600 text-white' : ''}`}>
-              {day}
+          {Array.from({ length: firstDay }).map((_, i) => (
+            <div key={`empty-${i}`}></div>
+          ))}
+          {Array.from({ length: daysInMonth }).map((_, i) => (
+            <div key={i + 1} className="py-2 hover:bg-blue-200 rounded cursor-pointer text-blue-900">
+              {i + 1}
             </div>
           ))}
         </div>
       </div>
     );
   } catch (error) {
-    console.error('Calendar error:', error);
+    console.error('Calendar component error:', error);
     return null;
   }
 }

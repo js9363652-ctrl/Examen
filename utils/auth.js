@@ -1,14 +1,14 @@
 const USERS = [
-  { username: 'superadmin1', password: 'super123', role: 'superusuario', name: 'Super Admin 1', avatar: 'https://ui-avatars.com/api/?name=Super+Admin+1&background=2563eb&color=fff' },
-  { username: 'superadmin2', password: 'super123', role: 'superusuario', name: 'Super Admin 2', avatar: 'https://ui-avatars.com/api/?name=Super+Admin+2&background=2563eb&color=fff' },
-  { username: 'admin1', password: 'admin123', role: 'admin', name: 'Administrador 1', avatar: 'https://ui-avatars.com/api/?name=Admin+1&background=10b981&color=fff' },
-  { username: 'admin2', password: 'admin123', role: 'admin', name: 'Administrador 2', avatar: 'https://ui-avatars.com/api/?name=Admin+2&background=10b981&color=fff' },
-  { username: 'user1', password: 'user123', role: 'usuario', name: 'Usuario 1', avatar: 'https://ui-avatars.com/api/?name=User+1&background=6366f1&color=fff' },
-  { username: 'user2', password: 'user123', role: 'usuario', name: 'Usuario 2', avatar: 'https://ui-avatars.com/api/?name=User+2&background=6366f1&color=fff' }
+  { username: 'super1', password: 'super123', name: 'Super Usuario 1', role: 'Superusuario' },
+  { username: 'super2', password: 'super123', name: 'Super Usuario 2', role: 'Superusuario' },
+  { username: 'admin1', password: 'admin123', name: 'Administrador 1', role: 'Administrador' },
+  { username: 'admin2', password: 'admin123', name: 'Administrador 2', role: 'Administrador' },
+  { username: 'user1', password: 'user123', name: 'Usuario 1', role: 'Usuario' },
+  { username: 'user2', password: 'user123', name: 'Usuario 2', role: 'Usuario' }
 ];
 
 function authenticateUser(username, password) {
-  return USERS.find(u => u.username === username && u.password === password) || null;
+  return USERS.find(user => user.username === username && user.password === password);
 }
 
 function getCurrentUser() {

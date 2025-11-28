@@ -5,6 +5,7 @@ function ActivityChart() {
 
     React.useEffect(() => {
       if (chartRef.current) {
+        const ChartJS = window.Chart;
         const ctx = chartRef.current.getContext('2d');
         
         if (chartInstance.current) {
@@ -17,7 +18,7 @@ function ActivityChart() {
             labels: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
             datasets: [{
               label: 'Actividad',
-              data: [12, 19, 15, 25, 22, 30, 28],
+              data: [65, 78, 90, 81, 76, 85, 92],
               borderColor: '#2563eb',
               backgroundColor: 'rgba(37, 99, 235, 0.1)',
               tension: 0.4,
@@ -49,15 +50,15 @@ function ActivityChart() {
     }, []);
 
     return (
-      <div className="bg-white rounded-lg p-6 shadow-lg" data-name="activity-chart" data-file="components/ActivityChart.js">
-        <h2 className="text-xl font-bold text-gray-900 mb-4">Actividad del Usuario</h2>
+      <div className="bg-blue-50 bg-opacity-95 backdrop-blur p-6 rounded-lg shadow-lg border-2 border-blue-200" data-name="activity-chart" data-file="components/ActivityChart.js">
+        <h3 className="text-xl font-bold mb-4 text-blue-900">Actividad Semanal</h3>
         <div className="h-64">
           <canvas ref={chartRef}></canvas>
         </div>
       </div>
     );
   } catch (error) {
-    console.error('ActivityChart error:', error);
+    console.error('ActivityChart component error:', error);
     return null;
   }
 }

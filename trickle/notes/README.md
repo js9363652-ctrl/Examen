@@ -1,33 +1,39 @@
-# Sistema de Gestión de Fútbol
+# Sistema de Gestión con Control de Usuarios
 
-Sistema web con autenticación de usuarios, control de roles y dashboard interactivo.
+Sistema completo de gestión con autenticación, roles de usuario y dashboard interactivo.
 
 ## Características
 
-- **Sistema de Login**: Autenticación con fondo de cancha de fútbol nocturna
-- **Roles de Usuario**: Superusuario, Admin y Usuario
-- **Dashboard**: Panel principal con tarjetas informativas, calendario, gráficos y documentos
-- **Topbar**: Barra superior con notificaciones y perfil de usuario
-- **Sidebar**: Panel lateral colapsable con navegación
+- **Login con fondo de estadio de fútbol nocturno**: Formulario transparente con vista de estadio iluminado
+- **Control de roles**: Superusuario, Administrador y Usuario
+- **Dashboard interactivo**: Tarjetas estadísticas, calendario, gráfico de actividad y panel de documentos
+- **Sidebar colapsable**: Navegación lateral con logo de cubo estilo Geometry Dash
+- **Topbar**: Notificaciones interactivas y perfil de usuario
 
-## Usuarios Pre-configurados
+## Usuarios del Sistema
 
 ### Superusuarios
-- Usuario: superadmin1 / Contraseña: super123
-- Usuario: superadmin2 / Contraseña: super123
+- Usuario: `super1` / Contraseña: `super123`
+- Usuario: `super2` / Contraseña: `super123`
 
 ### Administradores
-- Usuario: admin1 / Contraseña: admin123
-- Usuario: admin2 / Contraseña: admin123
+- Usuario: `admin1` / Contraseña: `admin123`
+- Usuario: `admin2` / Contraseña: `admin123`
 
-### Usuarios
-- Usuario: user1 / Contraseña: user123
-- Usuario: user2 / Contraseña: user123
+### Usuarios Normales
+- Usuario: `user1` / Contraseña: `user123`
+- Usuario: `user2` / Contraseña: `user123`
 
-## Estructura del Proyecto
+## Componentes del Dashboard
 
-- `index.html` - Página de login
-- `dashboard.html` - Dashboard principal
-- `users.html` - Gestión de usuarios
-- `components/` - Componentes reutilizables
-- `utils/` - Utilidades y funciones auxiliares
+1. **Tarjetas Estadísticas**: 4 tarjetas con métricas clave (Usuarios, Documentos, Actividad, Notificaciones)
+2. **Calendario**: Navegación por meses con visualización de días
+3. **Gráfico de Actividad**: Gráfico de línea semanal
+4. **Panel de Documentos**: Tabla con estado y fecha de modificación
+
+## Tecnologías
+
+- React 18
+- TailwindCSS
+- Chart.js
+- Lucide Icons
